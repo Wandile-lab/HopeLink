@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* General Layout */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: auto;
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+  color: #e0e7ff;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Utility */
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1b263b;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #2563eb;
+  border-radius: 20px;
+  border: 2px solid #1b263b;
+}
+
+/* Chatbot Quick Buttons */
+.quick-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+.quick-buttons button {
+  background-color: #1976d2;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Danger Modal */
+.danger-modal {
+  background: #ffe0e0;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 10px;
+  color: #990000;
+  font-size: 0.9rem;
+}
+
+.close-btn {
+  margin-top: 8px;
+  background: #990000;
+  color: white;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Gradient Heading Text */
+.gradient-heading {
+  background: linear-gradient(to right, #1e3a8a, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.app-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 24px;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 16px;
+}
+
+.app-child {
+  flex: 1 1 33%;
+  max-width: 33%;
+  min-width: 300px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .app-child {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,1 @@
+wget https://usgs.gov/earthquake.keras -O models/earthquake.keras

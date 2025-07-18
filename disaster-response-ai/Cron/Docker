@@ -1,0 +1,2 @@
+# Add to crontab (runs daily at 6 AM)
+0 6 * * * /usr/bin/python3 /app/scripts/download_datasets.py

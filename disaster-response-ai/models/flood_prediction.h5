@@ -1,0 +1,1 @@
+wget https://unosat.org/models/flood_prediction.h5 -O models/flood_prediction.h5

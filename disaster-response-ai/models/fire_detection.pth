@@ -1,0 +1,1 @@
+wget https://nasa.gov/firms/fire_detection.pth -O models/fire_detection.pth
