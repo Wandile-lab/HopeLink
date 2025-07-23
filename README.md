@@ -7,6 +7,10 @@ SDG Focus: SDG 11 (Sustainable Cities & Communities) and SDG 13 (Climate Action)
 # Overview
 Disasters create chaos—delayed aid, overwhelmed shelters, and fragmented data lead to confusion and vulnerability. HopeLink is an AI-enhanced platform that centralizes disaster response, providing real-time coordination tools, intelligent predictions, and accessible support interfaces for affected communities and responders.
 
+> Note
+> - This is a demo with dummy data for development and testing.
+> - The backend is implemented but not yet fully utilized, as the project currently uses mock data on the frontend. This allows faster development and easier testing without  relying on live backend services. Full backend integration will come in future updates.
+
 # SDG Alignment
 SDG 11: Promote sustainable and resilient cities through disaster preparedness
 
@@ -65,7 +69,7 @@ Eco-efficiency: Lightweight rendering for low-resource environments
 
 Accessibility: Mobile-friendly design for users in disaster conditions
 
-## Note
-- This is a demo with dummy data for development and testing.
+
+
 
 
