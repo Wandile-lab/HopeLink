@@ -1,70 +1,69 @@
-# HopeLink: AI-Powered Disaster Response & Coordination Platform (SDG 11 & 13)
-Live link: https://wandile-lab.github.io/HopeLink/
+# HopeLink: AI-Powered Disaster Response & Coordination Platform
 
+SDG Focus: SDG 11 (Sustainable Cities & Communities) and SDG 13 (Climate Action)
 
-# SDG Focus
-Goals:
+ Live Demo: https://wandile-lab.github.io/HopeLink/
 
-SDG 11 – Sustainable Cities and Communities
+# Overview
+Disasters create chaos—delayed aid, overwhelmed shelters, and fragmented data lead to confusion and vulnerability. HopeLink is an AI-enhanced platform that centralizes disaster response, providing real-time coordination tools, intelligent predictions, and accessible support interfaces for affected communities and responders.
 
-SDG 13 – Climate Action
+# SDG Alignment
+SDG 11: Promote sustainable and resilient cities through disaster preparedness
 
-Problem:
-Disasters often create chaos—delayed aid, overwhelmed shelters, and lack of situational awareness. Civilians are left vulnerable, and emergency services face fragmented data. HopeLink aims to centralize crisis coordination using smart tools and predictive insights.
+SDG 13: Strengthen climate resilience and adaptive capabilities using AI
 
-# AI Approach
-Software Engineering Skills Applied:
+# AI & Engineering Approach
+Core Features
+Real-time disaster reporting(Mock)
 
-Automation: Dynamic emergency form intake; aid allocation simulations.
+AI-powered predictions for floods and fires (using placeholder ML logic)
 
-Testing: Component testing (e.g., form validation, prediction logic).
+Interactive map with:
 
-Scalability: Micro-modules for map rendering, AI logic, and form submissions.
+Live shelter markers
 
-Technical Solution:
+Simulated danger zones
 
-Real-time disaster reports via user-friendly forms
+Optimal evacuation routes
 
-AI-generated predictions (placeholder ML models) for floods and fires
+# Backend logic to simulate AI-based aid prioritization
 
-Live map with shelter markers, danger zones, and optimal evacuation routes
+Technical Stack
+Frontend: React, Leaflet, MUI, Recharts
 
-Backend logic to simulate AI-based aid prioritization
+Backend: FastAPI (modular APIs)
 
-# Tools & Frameworks
-AI/ML:
+AI Modules: TensorFlow, Scikit-learn (placeholder simulations)
 
-TensorFlow (placeholder ML logic)
+Mapping & Routing: OpenStreetMap (via Leaflet)
 
-Scikit-learn (simulation-ready prediction models)
+# Engineering Highlights
+Automation: Dynamic form intake and aid simulation
 
-Software Engineering:
+Scalability: Micro-modular backend and UI components
 
-Python, JavaScript
+Testing: Form validation and logic testing
 
-Git, CI/CD
-
-Data Sources:
-
+# Data Sources
 Simulated disaster datasets
 
-OpenStreetMap for shelter and route data
+OpenStreetMap (for shelter and geolocation)
 
-Public emergency APIs (future integrations)
+Public emergency APIs (planned integration)
 
 # Deliverables
-Code: Modular scripts for form handling, prediction engine, and dashboard logic
+Codebase: Modular frontend/backend with reusable components
 
-Deployment: Web prototype with dynamic UI and interactive map
+Deployment: Live web prototype with interactive UI
 
-Report: Breakdown of system architecture, SDG alignment, and ethical concerns
+Documentation: Architecture, SDG justification, AI ethics report
 
-# Ethical & Sustainability Checks
-Bias Mitigation: Ensure ML predictions are trained on diverse, inclusive data
+# Ethical & Sustainability Practices
+Bias Mitigation: Simulated ML includes diverse test cases
 
-Environmental Impact: Lightweight models and map rendering to reduce energy use
+Eco-efficiency: Lightweight rendering for low-resource environments
 
-Accessibility: Mobile-responsive design for disaster-struck areas with limited access
+Accessibility: Mobile-friendly design for users in disaster conditions
 
 ## Note
 - This is a demo with dummy data for development and testing.
