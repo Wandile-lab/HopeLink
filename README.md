@@ -6,7 +6,7 @@ Emergency Form Submission
 Users can report disasters and request aid in real-time via a dynamic form UI.
 
 AI-Powered Predictions
-Uses mock ML models (TensorFlow-based placeholder) to simulate predictions for floods, fires, and other emergencies.
+Uses ML models (TensorFlow-based placeholder) to simulate predictions for floods, fires, and other emergencies.
 
 Live Map & Routing Panel
 Interactive Leaflet-powered map to visualize user reports and optimal emergency routes.
