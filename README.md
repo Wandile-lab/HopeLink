@@ -1,6 +1,6 @@
 # HopeLink: AI-Powered Disaster Response & Coordination Platform
 
-SDG Focus: SDG 11 (Sustainable Cities & Communities) and SDG 13 (Climate Action)
+SDG Focus: SDG 3 (Good Health & Well-being), SDG 11 (Sustainable Cities & Communities) and SDG 13 (Climate Action)
 
  Live Demo: https://wandile-lab.github.io/HopeLink/
 
@@ -12,6 +12,9 @@ Disasters create chaos—delayed aid, overwhelmed shelters, and fragmented data 
 > - The backend is implemented but not yet fully utilized, as the project currently uses mock data on the frontend. This allows faster development and easier testing without  relying on live backend services. Full backend integration will come in future updates.
 
 # SDG Alignment
+
+SDG 3: Ensure access to emergency health services and mental health support during and after disasters through coordinated AI-assisted triaging and resource tracking
+
 SDG 11: Promote sustainable and resilient cities through disaster preparedness
 
 SDG 13: Strengthen climate resilience and adaptive capabilities using AI
@@ -68,6 +71,8 @@ Bias Mitigation: Simulated ML includes diverse test cases
 Eco-efficiency: Lightweight rendering for low-resource environments
 
 Accessibility: Mobile-friendly design for users in disaster conditions
+
+
 
 
 
