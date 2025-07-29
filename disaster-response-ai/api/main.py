@@ -8,6 +8,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
+    allow_credentials=True,
     allow_headers=["*"],
 )
 
@@ -16,6 +17,8 @@ app.include_router(prediction.router, prefix="/prediction")
 app.include_router(routing.router, prefix="/routing")
 app.include_router(aid_optimizer.router, prefix="/aid")
 app.include_router(explainability.router, prefix="/explain")
+app.include_router(prediction.router, prefix="/api")
+
 
 @app.get("/health")
 async def health_check():

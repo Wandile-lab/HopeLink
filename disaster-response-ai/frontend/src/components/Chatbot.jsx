@@ -31,37 +31,66 @@ export default function ChatBot() {
     }
   }, [messages]);
 
-  const sendMessage = (messageText) => {
-    const userMessage = messageText || input.trim();
-    if (!userMessage) return;
+  // Modified sendMessage to call AI backend if no quick common response found
+  const sendMessage = async (messageText) => {
+  const userMessage = messageText || input.trim();
+  if (!userMessage) return;
 
-    setMessages((msgs) => [...msgs, { role: 'user', text: userMessage }]);
-    setInput('');
-    setIsTyping(true);
+  setMessages((msgs) => [...msgs, { role: 'user', text: userMessage }]);
+  setInput('');
+  setIsTyping(true);
 
+  const lower = userMessage.toLowerCase();
+  const responseEntry = Object.entries(commonResponses).find(([key]) =>
+    lower.includes(key)
+  );
+
+  if (responseEntry) {
     setTimeout(() => {
-      const lower = userMessage.toLowerCase();
-      const responseEntry = Object.entries(commonResponses).find(([key]) =>
-        lower.includes(key)
-      );
-
-      if (responseEntry) {
-        setMessages((msgs) => [
-          ...msgs,
-          { role: 'bot', text: responseEntry[1] },
-        ]);
-      } else {
-        setMessages((msgs) => [
-          ...msgs,
-          {
-            role: 'bot',
-            text: `Sorry, I’m still learning. I got your message: "${userMessage}". We'll get back to you shortly!`,
-          },
-        ]);
-      }
+      setMessages((msgs) => [
+        ...msgs,
+        { role: 'bot', text: responseEntry[1] },
+      ]);
       setIsTyping(false);
     }, 1200);
-  };
+  } else {
+    try {
+      const res = await fetch('http://127.0.0.1:8000/prediction/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: userMessage }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Server error: ${res.statusText}`);
+      }
+
+      const data = await res.json();
+
+    const aiResponseText = data.response_message || `Detected disaster: ${data.disaster_type} (Confidence: ${Math.round(data.confidence * 100)}%)\nUrgency: ${data.urgency}`;
+
+      setMessages((msgs) => [
+        ...msgs,
+        {
+          role: 'bot',
+          text: aiResponseText,
+          urgency: data.urgency,
+        },
+      ]);
+    } catch (error) {
+      setMessages((msgs) => [
+        ...msgs,
+        {
+          role: 'bot',
+          text: "Sorry, I'm having trouble contacting the AI service right now.",
+        },
+      ]);
+    } finally {
+      setIsTyping(false);
+    }
+  }
+};
+
 
   const handleQuickReply = (text) => {
     sendMessage(text);
@@ -88,7 +117,20 @@ export default function ChatBot() {
 
       <div className="chat-messages" ref={messagesRef} style={{ maxHeight: '400px', overflowY: 'auto' }}>
         {messages.map((msg, idx) => (
-          <div key={idx} className={`chat-message ${msg.role}`}>
+          <div
+            key={idx}
+            className={`chat-message ${msg.role}`}
+            style={{
+              backgroundColor:
+                msg.role === 'bot' && msg.urgency === 'high'
+                  ? '#b91c1c'
+                  : undefined,
+              boxShadow:
+                msg.role === 'bot' && msg.urgency === 'high'
+                  ? '0 0 10px 3px rgba(185, 28, 28, 0.8)'
+                  : undefined,
+            }}
+          >
             <div className="chat-bubble">
               <strong>{msg.role === 'bot' ? 'HopeLink Bot' : 'You'}</strong>: {msg.text}
             </div>
@@ -104,11 +146,10 @@ export default function ChatBot() {
       </div>
 
       {/* New location tracking message */}
-  <div className="tracking-indicator">
-   <span className="dot">◉</span>
-    Your location is being tracked
-  </div>
-
+      <div className="tracking-indicator">
+        <span className="dot">◉</span>
+        Your location is being tracked
+      </div>
 
       <div className="quick-replies">
         {quickReplies.map((reply, idx) => (
@@ -130,8 +171,13 @@ export default function ChatBot() {
           onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
           placeholder="Type your message..."
         />
-        <button className="send-button" onClick={() => sendMessage()}>Send</button>
-        <button className="danger-button" onClick={handleReportDanger}> Report Danger</button>
+        <button className="send-button" onClick={() => sendMessage()}>
+          Send
+        </button>
+        <button className="danger-button" onClick={handleReportDanger}>
+          {' '}
+          Report Danger
+        </button>
       </div>
 
       {showDangerModal && (
@@ -141,7 +187,9 @@ export default function ChatBot() {
             <textarea placeholder="Describe the danger..." rows={4}></textarea>
             <div className="modal-actions">
               <button onClick={() => setShowDangerModal(false)}>Cancel</button>
-              <button className="send-button" onClick={handleReportDanger}>Submit</button>
+              <button className="send-button" onClick={handleReportDanger}>
+                Submit
+              </button>
             </div>
           </div>
         </div>
