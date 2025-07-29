@@ -7,9 +7,20 @@ SDG Focus: SDG 3 (Good Health & Well-being), SDG 11 (Sustainable Cities & Commun
 # Overview
 Disasters create chaos—delayed aid, overwhelmed shelters, and fragmented data lead to confusion and vulnerability. HopeLink is an AI-enhanced platform that centralizes disaster response, providing real-time coordination tools, intelligent predictions, and accessible support interfaces for affected communities and responders.
 
-> Note
-> - This is a demo with dummy data for development and testing.
-> - The backend is implemented but not yet fully utilized, as the project currently uses mock data on the frontend. This allows faster development and easier testing without  relying on live backend services. Full backend integration will come in future updates.
+> # Note(AI integration)
+> 
+> As of 29/07/2025 The backend has been rebuilt and now includes a working AI pipeline for disaster classification.
+> 
+> While the system is functional, some issues remain. Here's the current state:
+> 
+> AI pipeline trained and saved using joblib
+> Text classification (disaster type and urgency) using predict_proba
+> FastAPI backend with real, testable endpoints
+> Modular structure for model reuse and separation of concerns
+> 
+> ⚠️ Minor issues with fallback message logic and model file loading paths
+> 
+> ⚠️ Model trained on small sample data — not yet optimized for large-scale accuracy (MVP status)
 
 # SDG Alignment
 
