@@ -44,6 +44,15 @@ SDG 11: Promote sustainable and resilient cities through disaster preparedness
 
 SDG 13: Strengthen climate resilience and adaptive capabilities using AI
 
+# Tech Stack
+Frontend: React, Leaflet, MUI, Recharts
+
+Backend: FastAPI (modular structure)
+
+AI Modules: Scikit-learn, TensorFlow (mocked)
+
+Mapping: OpenStreetMap via Leaflet
+
 # AI & Engineering Approach
 Core Features
 Real-time disaster reporting(Mock)
@@ -97,6 +106,47 @@ Eco-efficiency: Lightweight rendering for low-resource environments
 
 Accessibility: Mobile-friendly design for users in disaster conditions
 
+# Setup Instructions
+
+### Backend Setup (FastAPI + AI)
+
+#### 1. Clone the backend repo
+```bash
+git clone https://github.com/Wandile-lab/HopeLink
+cd HopeLink
+```
+
+#### 2. Set up Python environment (Ensure Python 3.10+ is installed.)
+
+```bash
+pip install -r requirements.txt
+```
+#### 3. Run the FastAPI server
+```bash
+uvicorn main:app --reload
+```
+### 4. Test the prediction endpoint
+```bash
+curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d '{"message": "There is heavy flooding in my area"}'
+```
+
+### Frontend Setup (React + Leaflet)
+
+### 1. Navigate to frontend folder 
+```bash
+cd disaster-ai-response/frontend
+```
+
+### 2. Install dependencies
+Make sure Node.js and npm are installed.
+
+```bash
+npm install
+```
+### 3. Start the frontend
+```bash
+npm run dev
+```
 
 
 
