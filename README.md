@@ -1,7 +1,7 @@
 [![Powered by Vite](https://img.shields.io/badge/Powered%20by-Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![FastAPI](https://img.shields.io/badge/Powered_by-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
 
-# HopeLink: AI-Powered Disaster Response & Coordination Platform
+# HopeLink: AI-Powered Disaster Response & Coordination Platform (MVP)
 
 SDG Focus: SDG 3 (Good Health & Well-being), SDG 11 (Sustainable Cities & Communities) and SDG 13 (Climate Action)
 
