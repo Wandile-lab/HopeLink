@@ -1,7 +1,7 @@
-import os
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 import joblib
+from pathlib import Path
 
 router = APIRouter()
 
@@ -16,18 +16,17 @@ class PredictionResponse(BaseModel):
     response_message: str
 
 # Resolve model directory relative to this file
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # api/
-MODEL_DIR = os.path.join(BASE_DIR, "models")
+CURRENT_DIR = Path(__file__).resolve().parent
+MODEL_DIR = CURRENT_DIR.parent / "models"
+clf_path = MODEL_DIR / "hope_classifier.pkl"
+vec_path = MODEL_DIR / "hope_vectorizer.pkl"
 
 # Load model and vectorizer once at startup
-clf_path = os.path.join(MODEL_DIR, "hope_classifier.pkl")
-vec_path = os.path.join(MODEL_DIR, "hope_vectorizer.pkl")
-
 try:
     clf = joblib.load(clf_path)
     vectorizer = joblib.load(vec_path)
 except Exception as e:
-    print(f"Error loading model or vectorizer: {e}")
+    print(f"❌ Error loading model or vectorizer: {e}")
     clf = None
     vectorizer = None
 
@@ -43,21 +42,19 @@ def predict_disaster(request: PredictionRequest):
         raise HTTPException(status_code=500, detail="Model or vectorizer not loaded")
 
     text = request.message.lower()
-    X = vectorizer.transform([text])
-    pred_label = clf.predict(X)[0]
-    proba = clf.predict_proba(X).max()
-    
-    print(f"Predicted: {pred_label}, Confidence: {proba}")
+    try:
+        pred_label = clf.predict([text])[0]
+        proba = clf.predict_proba([text]).max()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Inference error: {e}")
 
-    # Handle unknown or low confidence predictions with a smart fallback
+    print(f"Predicted: {pred_label}, Confidence: {proba:.2f}")
+
     if proba < 0.6 or pred_label == "unknown":
         response_message = (
-            "Thank you for your report. Our system is currently analyzing the details, "
-            "and while some specifics are still being confirmed, rest assured that your "
-            "alert has been prioritized. In situations like this, timely preparedness "
-            "is key: please stay alert for updates from local authorities, and if you "
-            "or others are in immediate danger, contact emergency services directly. "
-            "We’re continuously improving our detection algorithms to serve you better."
+            "Thank you for your report. Our system is currently analyzing the details. "
+            "Although some specifics are still being confirmed, your alert has been prioritized. "
+            "Please stay alert and follow any official guidance. If you're in danger, call emergency services immediately."
         )
         return PredictionResponse(
             disaster_type="unknown",
@@ -69,24 +66,23 @@ def predict_disaster(request: PredictionRequest):
     disaster_type, urgency = parse_label(pred_label)
 
     if urgency == "high":
-        action = "Alert sent to emergency responders immediately."
+        action = "🚨 Emergency responders have been alerted."
     elif urgency == "moderate":
-        action = "Flagged for monitoring by local authorities."
+        action = "⚠️ Situation is under observation by local authorities."
     else:
-        action = "Archived for future reference."
+        action = "📁 Report archived for record-keeping and further analysis."
 
     response_message = (
-        f"Detected disaster type: {disaster_type.capitalize()} with urgency level: {urgency.upper()}. "
-        f"{action} Stay safe!"
+        f"Detected disaster: **{disaster_type.capitalize()}** | Urgency: **{urgency.upper()}**. "
+        f"{action} Stay safe."
     )
 
     return PredictionResponse(
         disaster_type=disaster_type,
         urgency=urgency,
         confidence=proba,
-        response_message=response_message,
+        response_message=response_message
     )
-
 
 @router.get("/fire")
 def get_fire_prediction():
