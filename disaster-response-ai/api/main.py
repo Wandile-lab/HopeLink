@@ -19,6 +19,9 @@ app.include_router(aid_optimizer.router, prefix="/aid")
 app.include_router(explainability.router, prefix="/explain")
 app.include_router(prediction.router, prefix="/api")
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to HopeLink Disaster Response API! Visit /docs for API documentation."}
 
 @app.get("/health")
 async def health_check():
