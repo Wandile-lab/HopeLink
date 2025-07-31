@@ -1,8 +1,24 @@
+[![Powered by Vite](https://img.shields.io/badge/Powered%20by-Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![FastAPI](https://img.shields.io/badge/Powered_by-FastAPI-009688?logo=fastapi)](https://fastapi.tiangolo.com/)
+
 # HopeLink: AI-Powered Disaster Response & Coordination Platform
 
 SDG Focus: SDG 3 (Good Health & Well-being), SDG 11 (Sustainable Cities & Communities) and SDG 13 (Climate Action)
 
+# Frontend Link
  Live Demo: https://wandile-lab.github.io/HopeLink/
+
+# Backend Link
+
+The HopeLink Disaster Response API is live and accessible here:
+https://hopelink-backend3.onrender.com
+
+Docs: https://hopelink-backend3.onrender.com/docs
+(Explore endpoints, test the AI model, and view schemas)
+
+Health Check: https://hopelink-backend3.onrender.com/health
+
+Root Message: https://hopelink-backend3.onrender.com/
 
 # Overview
 Disasters create chaos—delayed aid, overwhelmed shelters, and fragmented data lead to confusion and vulnerability. HopeLink is an AI-enhanced platform that centralizes disaster response, providing real-time coordination tools, intelligent predictions, and accessible support interfaces for affected communities and responders.
